@@ -31,7 +31,7 @@ async function sendEmail() {
       text: 'Hello! This is a test email.',
     });
 
-    console.log('Email sent successfully!', response.messageId);
+    console.log('Email API call successful:', response.message);
   } catch (error) {
     console.error('Failed to send email:', error);
   }
@@ -83,17 +83,16 @@ At least one of `html` or `text` must be provided.
 
 Response:
 
-- `status`: 'queued' | 'failed'
-- `messageId`: Unique identifier for the email (if queued)
-- `error`: Error message (if failed)
+- `success`: `boolean` - Indicates if the email was successfully queued (typically `true` for a successful call).
+- `message`: `string` - A confirmation message from the API (e.g., "Email queued for sending").
 
 ## Error Handling
 
 The SDK throws `PoodleError` instances for API-related errors. Each error includes:
 
-- `message`: Human-readable error message
-- `statusCode`: HTTP status code (if applicable)
-- `code`: Error code from the API (if available)
+- `message`: Human-readable error message (from the API's `message` field).
+- `statusCode`: HTTP status code (if applicable).
+- `details`: Detailed error information or specific error code from the API (from the API's `error` field in the JSON response, if available).
 
 Common error scenarios:
 
