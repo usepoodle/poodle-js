@@ -43,17 +43,15 @@ export interface SendEmailOptions {
  */
 export interface SendEmailResponse {
   /**
-   * Status of the email send request
+   * Indicates if the request was successful in queueing the email.
+   * For a 202 response, this will be true.
    */
-  status: 'queued' | 'failed';
+  success: boolean;
   /**
-   * Message ID if the email was successfully queued
+   * Confirmation message from the API.
+   * e.g., "Email queued for sending"
    */
-  messageId?: string;
-  /**
-   * Error message if the email failed to queue
-   */
-  error?: string;
+  message: string;
 }
 
 /**
@@ -63,7 +61,7 @@ export class PoodleError extends Error {
   constructor(
     message: string,
     public statusCode?: number,
-    public code?: string
+    public details?: string
   ) {
     super(message);
     this.name = 'PoodleError';

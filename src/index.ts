@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import {
   PoodleClientOptions,
   PoodleError,
@@ -57,25 +57,23 @@ export class PoodleClient {
       );
       return response.data;
     } catch (error) {
-      if (
-        error &&
-        typeof error === 'object' &&
-        'isAxiosError' in error &&
-        error.isAxiosError
-      ) {
-        const axiosError = error as AxiosError<{
+      if (axios.isAxiosError(error) && error.response && error.response.data) {
+        interface BackendErrorData {
+          success: boolean;
           message: string;
-          code: string;
-        }>;
-        if (axiosError.response?.data) {
-          throw new PoodleError(
-            axiosError.response.data.message || 'API request failed',
-            axiosError.response.status,
-            axiosError.response.data.code
-          );
+          error?: string;
         }
+        const errorData = error.response.data as BackendErrorData;
+
+        throw new PoodleError(
+          errorData.message || 'API request failed',
+          error.response.status,
+          errorData.error
+        );
       }
-      throw new PoodleError('Failed to send email');
+      throw new PoodleError(
+        error instanceof Error ? error.message : 'Failed to send email'
+      );
     }
   }
 }

@@ -19,6 +19,11 @@ describe('PoodleClient', () => {
         baseURL: 'https://api.usepoodle.com/v1',
       },
     } as any);
+    mockedAxios.isAxiosError.mockImplementation(
+      (payload: any): payload is import('axios').AxiosError => {
+        return payload && payload.isAxiosError === true;
+      }
+    );
   });
 
   afterEach(() => {
@@ -79,7 +84,10 @@ describe('PoodleClient', () => {
     });
 
     it('should send email successfully', async () => {
-      const responseData = { status: 'queued', messageId: '123' };
+      const responseData = {
+        success: true,
+        message: 'Email queued for sending',
+      };
       mockPost.mockResolvedValueOnce({ data: responseData });
 
       const result = await client.sendEmail(validEmailOptions);
@@ -90,7 +98,7 @@ describe('PoodleClient', () => {
     it('should handle API errors', async () => {
       const errorData = {
         message: 'Invalid email address',
-        code: 'INVALID_EMAIL',
+        error: 'You used an invalid email address for the "to" field',
       };
 
       const axiosError = {
@@ -99,6 +107,11 @@ describe('PoodleClient', () => {
           status: 400,
           data: errorData,
         },
+        config: {},
+        request: {},
+        name: 'AxiosError',
+        message: 'Request failed with status code 400',
+        toJSON: () => ({}),
       };
 
       mockPost.mockRejectedValueOnce(axiosError);
@@ -107,7 +120,7 @@ describe('PoodleClient', () => {
         expect.objectContaining({
           message: errorData.message,
           statusCode: 400,
-          code: errorData.code,
+          details: errorData.error,
         })
       );
     });
