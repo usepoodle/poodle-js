@@ -20,7 +20,9 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "docs": "typedoc --out docs src/index.ts",
+    "docs:watch": "typedoc --out docs src/index.ts --watch"
   },
   "keywords": [
     "poodle",
@@ -59,6 +61,7 @@
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
+    "typedoc": "^0.28.4",
     "typescript": "^5.3.3"
   },
   "dependencies": {
