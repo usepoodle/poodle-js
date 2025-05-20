@@ -48,7 +48,7 @@ describe('PoodleClient', () => {
         headers: {
           Authorization: 'Bearer test-api-key',
           'Content-Type': 'application/json',
-          'User-Agent': 'poodle-js/0.4.0',
+          'User-Agent': 'poodle-js/1.0.0',
         },
       });
     });

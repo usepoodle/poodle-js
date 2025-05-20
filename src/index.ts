@@ -31,7 +31,7 @@ export class PoodleClient {
       headers: {
         Authorization: `Bearer ${options.apiKey}`,
         'Content-Type': 'application/json',
-        'User-Agent': 'poodle-js/0.4.0',
+        'User-Agent': 'poodle-js/1.0.0',
       },
     });
   }
