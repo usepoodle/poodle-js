@@ -60,11 +60,11 @@ For more usage patterns, including sending text-only emails, see the [examples](
 
 ## Features
 
-- Simple and intuitive API
-- TypeScript support with full type definitions
-- Promise-based async/await interface
-- Comprehensive error handling
-- Supports both HTML and plain text emails
+- **Intuitive API**: Get started in minutes.
+- **TypeScript First**: Robust type safety out-of-the-box.
+- **Modern Async**: Clean async/await for non-blocking operations.
+- **Detailed Errors**: Understand and debug issues quickly with PoodleError objects.
+- **Flexible Content**: Send rich HTML or plain text emails easily.
 
 ## API Reference
 
