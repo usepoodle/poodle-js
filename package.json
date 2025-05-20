@@ -1,6 +1,6 @@
 {
-  "name": "poodle-js",
-  "version": "0.3.0",
+  "name": "@usepoodle/poodle-js",
+  "version": "0.4.0",
   "description": "Poodle JavaScript and TypeScript SDK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

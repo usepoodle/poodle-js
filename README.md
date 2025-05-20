@@ -17,15 +17,15 @@ JavaScript and TypeScript SDK for Poodle's email sending API.
 ## Installation
 
 ```bash
-npm install poodle-js
+npm install @usepoodle/poodle-js
 # or
-yarn add poodle-js
+yarn add @usepoodle/poodle-js
 ```
 
 ## Quick Start
 
 ```typescript
-import { PoodleClient, PoodleError } from 'poodle-js';
+import { PoodleClient, PoodleError } from '@usepoodle/poodle-js';
 
 // Initialize the client with your API key
 const client = new PoodleClient({
