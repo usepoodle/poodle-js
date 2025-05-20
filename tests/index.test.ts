@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PoodleClient } from '../src';
+import { PoodleClient, PoodleClientOptions, SendEmailOptions } from '../src';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -18,10 +18,14 @@ describe('PoodleClient', () => {
       defaults: {
         baseURL: 'https://api.usepoodle.com/v1',
       },
-    } as any);
+    } as unknown as import('axios').AxiosInstance);
     mockedAxios.isAxiosError.mockImplementation(
-      (payload: any): payload is import('axios').AxiosError => {
-        return payload && payload.isAxiosError === true;
+      (payload: unknown): payload is import('axios').AxiosError => {
+        return (
+          typeof payload === 'object' &&
+          payload !== null &&
+          (payload as { isAxiosError?: boolean }).isAxiosError === true
+        );
       }
     );
   });
@@ -32,7 +36,9 @@ describe('PoodleClient', () => {
 
   describe('constructor', () => {
     it('should throw error if apiKey is not provided', () => {
-      expect(() => new PoodleClient({} as any)).toThrow('API key is required');
+      expect(
+        () => new PoodleClient({} as unknown as PoodleClientOptions)
+      ).toThrow('API key is required');
     });
 
     it('should create axios instance with correct config', () => {
@@ -50,7 +56,7 @@ describe('PoodleClient', () => {
 
   describe('sendEmail', () => {
     let client: PoodleClient;
-    const validEmailOptions = {
+    const validEmailOptions: SendEmailOptions = {
       from: 'sender@example.com',
       to: 'recipient@example.com',
       subject: 'Test Email',
@@ -62,17 +68,19 @@ describe('PoodleClient', () => {
     });
 
     it('should validate required fields', async () => {
-      await expect(client.sendEmail({} as any)).rejects.toThrow(
-        'From address is required'
-      );
       await expect(
-        client.sendEmail({ from: 'test@example.com' } as any)
+        client.sendEmail({} as unknown as SendEmailOptions)
+      ).rejects.toThrow('From address is required');
+      await expect(
+        client.sendEmail({
+          from: 'test@example.com',
+        } as unknown as SendEmailOptions)
       ).rejects.toThrow('To address is required');
       await expect(
         client.sendEmail({
           from: 'test@example.com',
           to: 'test@example.com',
-        } as any)
+        } as unknown as SendEmailOptions)
       ).rejects.toThrow('Subject is required');
       await expect(
         client.sendEmail({
@@ -111,7 +119,7 @@ describe('PoodleClient', () => {
         request: {},
         name: 'AxiosError',
         message: 'Request failed with status code 400',
-        toJSON: () => ({}),
+        toJSON: (): object => ({}),
       };
 
       mockPost.mockRejectedValueOnce(axiosError);
