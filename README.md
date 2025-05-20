@@ -2,6 +2,18 @@
 
 JavaScript and TypeScript SDK for Poodle's email sending API.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [API Reference](#api-reference)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Installation
 
 ```bash
