@@ -1,4 +1,4 @@
-import { PoodleClient } from '../src';
+import { PoodleClient, PoodleError } from '../src';
 
 // Initialize the client with your API key
 const client = new PoodleClient({
@@ -16,14 +16,18 @@ async function sendTestEmail(): Promise<void> {
       text: 'Hello from Poodle! This is a test email sent using the Poodle JavaScript SDK.',
     });
 
-    console.log('Email sent successfully!');
-    console.log('Message ID:', response.messageId);
-    console.log('Status:', response.status);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error('Failed to send email:', error.message);
-    } else {
-      console.error('An unknown error occurred');
+    console.log('Email API call successful:', response.message);
+  } catch (error: any) {
+    // Log the basic error message
+    console.error('Failed to send email:', error.message);
+
+    // Check if it's a PoodleError for more details
+    if (error instanceof PoodleError) {
+      console.error('Status Code:', error.statusCode);
+      console.error('Specific Details:', error.details);
+    } else if (!(error instanceof Error)) {
+      // Handle cases where error might not be an Error instance
+      console.error('An unknown error occurred:', error);
     }
   }
 }

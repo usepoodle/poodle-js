@@ -1,5 +1,5 @@
 // CommonJS import
-const { PoodleClient } = require('../dist');
+const { PoodleClient, PoodleError } = require('../dist');
 
 // Initialize the client with your API key
 const client = new PoodleClient({
@@ -17,11 +17,16 @@ async function sendTestEmail() {
       text: 'Hello from Poodle! This is a test email sent using the Poodle JavaScript SDK.',
     });
 
-    console.log('Email sent successfully!');
-    console.log('Message ID:', response.messageId);
-    console.log('Status:', response.status);
+    console.log('Email API call successful:', response.message);
   } catch (error) {
     console.error('Failed to send email:', error.message);
+
+    if (error instanceof PoodleError) {
+      console.error('Status Code:', error.statusCode);
+      console.error('Specific Details:', error.details);
+    } else if (!(error instanceof Error)) {
+      console.error('An unknown error occurred:', error);
+    }
   }
 }
 
