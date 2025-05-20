@@ -25,11 +25,11 @@ yarn add poodle-js
 ## Quick Start
 
 ```typescript
-import { PoodleClient } from 'poodle-js';
+import { PoodleClient, PoodleError } from 'poodle-js';
 
 // Initialize the client with your API key
 const client = new PoodleClient({
-  apiKey: 'your-api-key-here',
+  apiKey: 'YOUR_POODLE_API_KEY_HERE',
 });
 
 // Send an email
@@ -40,15 +40,23 @@ async function sendEmail() {
       to: 'recipient@example.com',
       subject: 'Hello from Poodle!',
       html: '<h1>Hello!</h1><p>This is a test email.</p>',
-      text: 'Hello! This is a test email.',
     });
 
     console.log('Email API call successful:', response.message);
   } catch (error) {
-    console.error('Failed to send email:', error);
+    console.error('Failed to send email:', error.message);
+
+    if (error instanceof PoodleError) {
+      console.error('Status Code:', error.statusCode);
+      console.error('Details:', error.details);
+    }
   }
 }
+
+sendEmail();
 ```
+
+For more usage patterns, including sending text-only emails, see the [examples](./examples) directory.
 
 ## Features
 
