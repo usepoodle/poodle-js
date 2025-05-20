@@ -43,12 +43,12 @@ async function sendEmail() {
     });
 
     console.log('Email API call successful:', response.message);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to send email:', error.message);
 
     if (error instanceof PoodleError) {
       console.error('Status Code:', error.statusCode);
-      console.error('Details:', error.details);
+      console.error('Specific Details:', error.details);
     }
   }
 }
