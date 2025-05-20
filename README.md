@@ -22,8 +22,6 @@ JavaScript and TypeScript SDK for Poodle's email sending API.
 
 ```bash
 npm install @usepoodle/poodle-js
-# or
-yarn add @usepoodle/poodle-js
 ```
 
 ## Quick Start
