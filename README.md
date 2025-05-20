@@ -1,5 +1,9 @@
 # poodle-js
 
+[![npm version](https://badge.fury.io/js/@usepoodle%2Fpoodle-js.svg)](https://www.npmjs.com/package/@usepoodle/poodle-js)
+[![Build Status](https://github.com/usepoodle/poodle-js/workflows/CI/badge.svg)](https://github.com/usepoodle/poodle-js/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 JavaScript and TypeScript SDK for Poodle's email sending API.
 
 ## Table of Contents
