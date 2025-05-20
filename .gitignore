@@ -32,3 +32,6 @@ coverage/
 # OS files
 .DS_Store
 Thumbs.db
+
+# ESLint cache
+.eslintcache
