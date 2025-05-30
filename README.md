@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/@usepoodle%2Fpoodle-js.svg)](https://www.npmjs.com/package/@usepoodle/poodle-js)
 [![Build Status](https://github.com/usepoodle/poodle-js/workflows/CI/badge.svg)](https://github.com/usepoodle/poodle-js/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/usepoodle/poodle-js/blob/main/LICENSE)
 
 JavaScript and TypeScript SDK for Poodle's email sending API.
 
@@ -58,7 +58,7 @@ async function sendEmail() {
 sendEmail();
 ```
 
-For more usage patterns, including sending text-only emails, see the [examples](./examples) directory.
+For more usage patterns, including sending text-only emails, see the [examples](https://github.com/usepoodle/poodle-js/tree/main/examples) directory.
 
 ## Features
 
@@ -125,7 +125,7 @@ Common error scenarios:
 
 ## Examples
 
-Check the [examples](./examples) directory for more usage examples.
+Check the [examples](https://github.com/usepoodle/poodle-js/tree/main/examples) directory for more usage examples.
 
 ## Development
 
@@ -148,8 +148,8 @@ npm run format
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on the process for submitting pull requests and our [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions are welcome! Please read our [Contributing Guide](https://github.com/usepoodle/poodle-js/blob/main/CONTRIBUTING.md) for details on the process for submitting pull requests and our [Code of Conduct](https://github.com/usepoodle/poodle-js/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/usepoodle/poodle-js/blob/main/LICENSE) file for details.
